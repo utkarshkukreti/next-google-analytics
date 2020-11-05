@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { NextWebVitalsMetric } from 'next/app';
-export declare const Head: () => JSX.Element | null;
+export declare const Head: () => JSX.Element;
 export declare const pageview: (url: string) => void;
 export declare const event: ({ action, category, label, value, }: {
     action: string;

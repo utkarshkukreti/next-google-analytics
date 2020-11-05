@@ -25,8 +25,9 @@ var React = __importStar(require("react"));
 var react_1 = require("react");
 var TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 exports.Head = function () {
-    if (!TRACKING_ID)
-        return null;
+    if (!TRACKING_ID) {
+        return React.createElement("script", { dangerouslySetInnerHTML: { __html: "function gtag(){}" } });
+    }
     return (React.createElement(React.Fragment, null,
         React.createElement("script", { async: true, src: "https://www.googletagmanager.com/gtag/js?id=" + TRACKING_ID }),
         React.createElement("script", { dangerouslySetInnerHTML: {
