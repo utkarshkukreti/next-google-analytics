@@ -2,7 +2,7 @@
   "name": "next-google-analytics",
   "version": "0.1.0",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc -d"
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.3",
