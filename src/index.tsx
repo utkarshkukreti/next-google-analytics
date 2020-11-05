@@ -1,3 +1,4 @@
+import { NextWebVitalsMetric } from 'next/dist/next-server/lib/utils';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useEffect } from 'react';
@@ -61,5 +62,20 @@ export const useAppInit = () => {
   useEffect(() => {
     router.events.on('routeChangeComplete', pageview);
     return () => router.events.off('routeChangeComplete', pageview);
+  });
+};
+
+export const reportWebVitals = ({
+  id,
+  name,
+  label,
+  value,
+}: NextWebVitalsMetric) => {
+  window.gtag('event', name, {
+    event_category:
+      label === 'web-vital' ? 'Web Vitals' : 'Next.js Custom Metric',
+    value: Math.round(name === 'CLS' ? value * 1000 : value),
+    event_label: id,
+    non_interaction: true,
   });
 };

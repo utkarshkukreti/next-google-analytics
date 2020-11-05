@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useAppInit = exports.event = exports.pageview = exports.Head = void 0;
+exports.reportWebVitals = exports.useAppInit = exports.event = exports.pageview = exports.Head = void 0;
 var router_1 = require("next/router");
 var React = __importStar(require("react"));
 var react_1 = require("react");
@@ -56,5 +56,14 @@ exports.useAppInit = function () {
     react_1.useEffect(function () {
         router.events.on('routeChangeComplete', exports.pageview);
         return function () { return router.events.off('routeChangeComplete', exports.pageview); };
+    });
+};
+exports.reportWebVitals = function (_a) {
+    var id = _a.id, name = _a.name, label = _a.label, value = _a.value;
+    window.gtag('event', name, {
+        event_category: label === 'web-vital' ? 'Web Vitals' : 'Next.js Custom Metric',
+        value: Math.round(name === 'CLS' ? value * 1000 : value),
+        event_label: id,
+        non_interaction: true,
     });
 };
