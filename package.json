@@ -1,7 +1,7 @@
 {
   "name": "next-google-analytics",
   "version": "0.1.0",
-  "main": "src/index.jsx",
+  "main": "src/index.js",
   "scripts": {
     "build": "tsc -d"
   },
