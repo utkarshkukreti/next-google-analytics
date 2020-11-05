@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 const TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
 export const Head = () => {
-  if (!TRACKING_ID) return;
+  if (!TRACKING_ID) return null;
 
   return (
     <>

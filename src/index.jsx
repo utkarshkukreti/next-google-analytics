@@ -6,7 +6,7 @@ var react_1 = require("react");
 var TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 exports.Head = function () {
     if (!TRACKING_ID)
-        return;
+        return null;
     return (<>
       <script async src={"https://www.googletagmanager.com/gtag/js?id=" + TRACKING_ID}/>
       <script dangerouslySetInnerHTML={{
