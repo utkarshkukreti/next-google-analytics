@@ -1,3 +1,6 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+
 export const Head = () => {
   return (
     <>
@@ -40,5 +43,14 @@ export const event = ({
     event_category: category,
     event_label: label,
     value: value,
+  });
+};
+
+export const useAppInit = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', pageview);
+    return () => router.events.off('routeChangeComplete', pageview);
   });
 };
