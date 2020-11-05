@@ -36,10 +36,12 @@ exports.Head = function () {
 exports.pageview = function (url) {
     if (!TRACKING_ID)
         return;
-    window.gtag('config', TRACKING_ID, {
-        page_path: url,
-        page_title: document.title,
-    });
+    setTimeout(function () {
+        window.gtag('config', TRACKING_ID, {
+            page_path: url,
+            page_title: document.title,
+        });
+    }, 0);
 };
 exports.event = function (_a) {
     var action = _a.action, category = _a.category, label = _a.label, value = _a.value;

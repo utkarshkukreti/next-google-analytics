@@ -29,10 +29,12 @@ gtag('config','${TRACKING_ID}');`,
 export const pageview = (url: string) => {
   if (!TRACKING_ID) return;
 
-  window.gtag('config', TRACKING_ID, {
-    page_path: url,
-    page_title: document.title,
-  });
+  setTimeout(() => {
+    window.gtag('config', TRACKING_ID, {
+      page_path: url,
+      page_title: document.title,
+    });
+  }, 0);
 };
 
 export const event = ({
