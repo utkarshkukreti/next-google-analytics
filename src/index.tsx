@@ -62,7 +62,7 @@ export const useAppInit = () => {
   useEffect(() => {
     router.events.on('routeChangeComplete', pageview);
     return () => router.events.off('routeChangeComplete', pageview);
-  });
+  }, []);
 };
 
 export const reportWebVitals = ({

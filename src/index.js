@@ -56,7 +56,7 @@ exports.useAppInit = function () {
     react_1.useEffect(function () {
         router.events.on('routeChangeComplete', exports.pageview);
         return function () { return router.events.off('routeChangeComplete', exports.pageview); };
-    });
+    }, []);
 };
 exports.reportWebVitals = function (_a) {
     var id = _a.id, name = _a.name, label = _a.label, value = _a.value;
