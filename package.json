@@ -12,11 +12,13 @@
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
     "@types/webpack": "^4.41.24",
-    "next": "*",
+    "next": "^10.0.1",
+    "react": "*",
+    "react-dom": "*",
     "typescript": "^4.0.5"
   },
   "peerDependencies": {
-    "next": "*",
+    "next": "^10.0.1",
     "react": "*"
   }
 }
