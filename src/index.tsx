@@ -1,12 +1,16 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
+const TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
+
 export const Head = () => {
+  if (!TRACKING_ID) return;
+
   return (
     <>
       <script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}
       />
       <script
         dangerouslySetInnerHTML={{
@@ -14,7 +18,7 @@ export const Head = () => {
 window.dataLayer=window.dataLayer||[];\
 function gtag(){dataLayer.push(arguments);}\
 gtag('js',new Date());\
-gtag('config','${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');`,
+gtag('config','${TRACKING_ID}');`,
         }}
       />
     </>
@@ -22,7 +26,9 @@ gtag('config','${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');`,
 };
 
 export const pageview = (url: string) => {
-  window.gtag('config', process.env.NEXT_PUBLIC_GA_TRACKING_ID!, {
+  if (!TRACKING_ID) return;
+
+  window.gtag('config', TRACKING_ID, {
     page_path: url,
     page_title: document.title,
   });
