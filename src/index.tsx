@@ -1,13 +1,13 @@
-import { NextWebVitalsMetric } from 'next/app';
-import { useRouter } from 'next/router';
-import * as React from 'react';
-import { useEffect } from 'react';
+import { NextWebVitalsMetric } from 'next/app'
+import { useRouter } from 'next/router'
+import * as React from 'react'
+import { useEffect } from 'react'
 
-const TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
+const TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID
 
 export const Head = () => {
   if (!TRACKING_ID) {
-    return <script dangerouslySetInnerHTML={{ __html: `function gtag(){}` }} />;
+    return <script dangerouslySetInnerHTML={{ __html: `function gtag(){}` }} />
   }
 
   return (
@@ -26,19 +26,19 @@ gtag('config','${TRACKING_ID}');`,
         }}
       />
     </>
-  );
-};
+  )
+}
 
 export const pageview = (url: string) => {
-  if (!TRACKING_ID) return;
+  if (!TRACKING_ID) return
 
   setTimeout(() => {
     window.gtag('config', TRACKING_ID, {
       page_path: url,
       page_title: document.title,
-    });
-  }, 0);
-};
+    })
+  }, 0)
+}
 
 export const event = ({
   action,
@@ -46,26 +46,26 @@ export const event = ({
   label,
   value,
 }: {
-  action: string;
-  category?: string;
-  label?: string;
-  value?: string;
+  action: string
+  category?: string
+  label?: string
+  value?: string
 }) => {
   window.gtag('event', action, {
     event_category: category,
     event_label: label,
     value: value,
-  });
-};
+  })
+}
 
 export const useAppInit = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
-    router.events.on('routeChangeComplete', pageview);
-    return () => router.events.off('routeChangeComplete', pageview);
-  }, []);
-};
+    router.events.on('routeChangeComplete', pageview)
+    return () => router.events.off('routeChangeComplete', pageview)
+  }, [])
+}
 
 export const reportWebVitals = ({
   id,
@@ -79,5 +79,5 @@ export const reportWebVitals = ({
     value: Math.round(name === 'CLS' ? value * 1000 : value),
     event_label: id,
     non_interaction: true,
-  });
-};
+  })
+}
