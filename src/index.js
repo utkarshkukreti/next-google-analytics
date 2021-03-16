@@ -24,7 +24,7 @@ var router_1 = require("next/router");
 var React = __importStar(require("react"));
 var react_1 = require("react");
 var TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
-exports.Head = function () {
+var Head = function () {
     if (!TRACKING_ID) {
         return React.createElement("script", { dangerouslySetInnerHTML: { __html: "function gtag(){}" } });
     }
@@ -34,7 +34,8 @@ exports.Head = function () {
                 __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','" + TRACKING_ID + "');",
             } })));
 };
-exports.pageview = function (url) {
+exports.Head = Head;
+var pageview = function (url) {
     if (!TRACKING_ID)
         return;
     setTimeout(function () {
@@ -44,7 +45,8 @@ exports.pageview = function (url) {
         });
     }, 0);
 };
-exports.event = function (_a) {
+exports.pageview = pageview;
+var event = function (_a) {
     var action = _a.action, category = _a.category, label = _a.label, value = _a.value;
     window.gtag('event', action, {
         event_category: category,
@@ -52,14 +54,16 @@ exports.event = function (_a) {
         value: value,
     });
 };
-exports.useAppInit = function () {
+exports.event = event;
+var useAppInit = function () {
     var router = router_1.useRouter();
     react_1.useEffect(function () {
         router.events.on('routeChangeComplete', exports.pageview);
         return function () { return router.events.off('routeChangeComplete', exports.pageview); };
     }, []);
 };
-exports.reportWebVitals = function (_a) {
+exports.useAppInit = useAppInit;
+var reportWebVitals = function (_a) {
     var id = _a.id, name = _a.name, label = _a.label, value = _a.value;
     window.gtag('event', name, {
         event_category: label === 'web-vital' ? 'Web Vitals' : 'Next.js Custom Metric',
@@ -68,3 +72,4 @@ exports.reportWebVitals = function (_a) {
         non_interaction: true,
     });
 };
+exports.reportWebVitals = reportWebVitals;
