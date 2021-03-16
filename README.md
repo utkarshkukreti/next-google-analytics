@@ -1,5 +1,7 @@
 # next-google-analytics
 
+> Add Google Analytics to your Next.js App in 60 seconds.
+
 ## Usage
 
 Set environment variable `NEXT_PUBLIC_GA_TRACKING_ID` to your Google Analytics tracking id.
