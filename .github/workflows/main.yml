@@ -1,9 +1,9 @@
-name: CI
+name: Main
 
 on: [push, pull_request]
 
 jobs:
-  ci:
+  main:
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
