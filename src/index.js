@@ -20,25 +20,29 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.reportWebVitals = exports.useAppInit = exports.event = exports.pageview = exports.Head = void 0;
-var router_1 = require("next/router");
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
-var Head = function () {
+const router_1 = require("next/router");
+const React = __importStar(require("react"));
+const react_1 = require("react");
+const TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
+const Head = () => {
     if (!TRACKING_ID) {
-        return React.createElement("script", { dangerouslySetInnerHTML: { __html: "function gtag(){}" } });
+        return React.createElement("script", { dangerouslySetInnerHTML: { __html: `function gtag(){}` } });
     }
     return (React.createElement(React.Fragment, null,
-        React.createElement("script", { async: true, src: "https://www.googletagmanager.com/gtag/js?id=" + TRACKING_ID }),
+        React.createElement("script", { async: true, src: `https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}` }),
         React.createElement("script", { dangerouslySetInnerHTML: {
-                __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','" + TRACKING_ID + "');",
+                __html: `\
+window.dataLayer=window.dataLayer||[];\
+function gtag(){dataLayer.push(arguments);}\
+gtag('js',new Date());\
+gtag('config','${TRACKING_ID}');`,
             } })));
 };
 exports.Head = Head;
-var pageview = function (url) {
+const pageview = (url) => {
     if (!TRACKING_ID)
         return;
-    setTimeout(function () {
+    setTimeout(() => {
         window.gtag('config', TRACKING_ID, {
             page_path: url,
             page_title: document.title,
@@ -46,8 +50,7 @@ var pageview = function (url) {
     }, 0);
 };
 exports.pageview = pageview;
-var event = function (_a) {
-    var action = _a.action, category = _a.category, label = _a.label, value = _a.value;
+const event = ({ action, category, label, value, }) => {
     window.gtag('event', action, {
         event_category: category,
         event_label: label,
@@ -55,16 +58,15 @@ var event = function (_a) {
     });
 };
 exports.event = event;
-var useAppInit = function () {
-    var router = router_1.useRouter();
-    react_1.useEffect(function () {
+const useAppInit = () => {
+    const router = router_1.useRouter();
+    react_1.useEffect(() => {
         router.events.on('routeChangeComplete', exports.pageview);
-        return function () { return router.events.off('routeChangeComplete', exports.pageview); };
+        return () => router.events.off('routeChangeComplete', exports.pageview);
     }, []);
 };
 exports.useAppInit = useAppInit;
-var reportWebVitals = function (_a) {
-    var id = _a.id, name = _a.name, label = _a.label, value = _a.value;
+const reportWebVitals = ({ id, name, label, value, }) => {
     window.gtag('event', name, {
         event_category: label === 'web-vital' ? 'Web Vitals' : 'Next.js Custom Metric',
         value: Math.round(name === 'CLS' ? value * 1000 : value),
