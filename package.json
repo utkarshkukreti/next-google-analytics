@@ -4,6 +4,9 @@
   "license": "MIT",
   "description": "Add Google Analytics to your Next.js App in 60 seconds.",
   "main": "src/index.js",
+  "files": [
+    "src"
+  ],
   "scripts": {
     "build": "tsc -d",
     "prepare": "yarn build"
