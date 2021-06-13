@@ -5,7 +5,8 @@
   "description": "Add Google Analytics to your Next.js App in 60 seconds.",
   "main": "src/index.js",
   "scripts": {
-    "build": "tsc -d"
+    "build": "tsc -d",
+    "prepare": "yarn build"
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.5",
