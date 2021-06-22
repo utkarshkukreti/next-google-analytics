@@ -12,16 +12,16 @@
     "prepare": "yarn build"
   },
   "devDependencies": {
-    "@types/gtag.js": "^0.0.5",
+    "@types/gtag.js": "^0.0.6",
     "@types/react": "^17",
     "@types/react-dom": "^17",
-    "next": "^10",
+    "next": "^10 || ^11",
     "react": "^17",
     "react-dom": "^17",
     "typescript": "^4.3"
   },
   "peerDependencies": {
-    "next": "^10",
+    "next": "^10 || ^11",
     "react": "^17"
   }
 }
