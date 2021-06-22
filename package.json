@@ -1,6 +1,6 @@
 {
   "name": "next-google-analytics",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "description": "Add Google Analytics to your Next.js App in 60 seconds.",
   "main": "src/index.js",
