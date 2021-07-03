@@ -23,7 +23,7 @@ exports.reportWebVitals = exports.useAppInit = exports.event = exports.pageview 
 const router_1 = require("next/router");
 const React = __importStar(require("react"));
 const react_1 = require("react");
-const TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
+const TRACKING_ID = process.env['NEXT_PUBLIC_GA_TRACKING_ID'];
 const Head = () => {
     if (!TRACKING_ID) {
         return React.createElement("script", { dangerouslySetInnerHTML: { __html: `function gtag(){}` } });

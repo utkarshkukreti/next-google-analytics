@@ -8,7 +8,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc -d",
+    "build": "tsc",
     "prepare": "yarn build"
   },
   "devDependencies": {

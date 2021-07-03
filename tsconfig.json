@@ -2,8 +2,16 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "strict": true,
     "jsx": "react",
+    "declaration": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "esModuleInterop": true
   }
 }
