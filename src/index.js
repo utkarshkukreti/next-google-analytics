@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -59,8 +63,8 @@ const event = ({ action, category, label, value, }) => {
 };
 exports.event = event;
 const useAppInit = () => {
-    const router = router_1.useRouter();
-    react_1.useEffect(() => {
+    const router = (0, router_1.useRouter)();
+    (0, react_1.useEffect)(() => {
         router.events.on('routeChangeComplete', exports.pageview);
         return () => router.events.off('routeChangeComplete', exports.pageview);
     }, []);
