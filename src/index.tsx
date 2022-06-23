@@ -3,10 +3,13 @@ import { useRouter } from 'next/router'
 import * as React from 'react'
 import { useEffect } from 'react'
 
-const TRACKING_ID = process.env['NEXT_PUBLIC_GA_TRACKING_ID']
+const MEASUREMENT_ID =
+  process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID'] ||
+  // for compatability with old name
+  process.env['NEXT_PUBLIC_GA_TRACKING_ID']
 
 export const Head = () => {
-  if (!TRACKING_ID) {
+  if (!MEASUREMENT_ID) {
     return <script dangerouslySetInnerHTML={{ __html: `function gtag(){}` }} />
   }
 
@@ -14,7 +17,7 @@ export const Head = () => {
     <>
       <script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`}
       />
       <script
         dangerouslySetInnerHTML={{
@@ -22,7 +25,7 @@ export const Head = () => {
 window.dataLayer=window.dataLayer||[];\
 function gtag(){dataLayer.push(arguments);}\
 gtag('js',new Date());\
-gtag('config','${TRACKING_ID}');`,
+gtag('config','${MEASUREMENT_ID}');`,
         }}
       />
     </>
@@ -30,10 +33,10 @@ gtag('config','${TRACKING_ID}');`,
 }
 
 export const pageview = (url: string) => {
-  if (!TRACKING_ID) return
+  if (!MEASUREMENT_ID) return
 
   setTimeout(() => {
-    window.gtag('config', TRACKING_ID, {
+    window.gtag('config', MEASUREMENT_ID, {
       page_path: url,
       page_title: document.title,
     })

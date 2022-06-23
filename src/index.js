@@ -27,27 +27,29 @@ exports.reportWebVitals = exports.useAppInit = exports.event = exports.pageview 
 const router_1 = require("next/router");
 const React = __importStar(require("react"));
 const react_1 = require("react");
-const TRACKING_ID = process.env['NEXT_PUBLIC_GA_TRACKING_ID'];
+const MEASUREMENT_ID = process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID'] ||
+    // for compatability with old name
+    process.env['NEXT_PUBLIC_GA_TRACKING_ID'];
 const Head = () => {
-    if (!TRACKING_ID) {
+    if (!MEASUREMENT_ID) {
         return React.createElement("script", { dangerouslySetInnerHTML: { __html: `function gtag(){}` } });
     }
     return (React.createElement(React.Fragment, null,
-        React.createElement("script", { async: true, src: `https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}` }),
+        React.createElement("script", { async: true, src: `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}` }),
         React.createElement("script", { dangerouslySetInnerHTML: {
                 __html: `\
 window.dataLayer=window.dataLayer||[];\
 function gtag(){dataLayer.push(arguments);}\
 gtag('js',new Date());\
-gtag('config','${TRACKING_ID}');`,
+gtag('config','${MEASUREMENT_ID}');`,
             } })));
 };
 exports.Head = Head;
 const pageview = (url) => {
-    if (!TRACKING_ID)
+    if (!MEASUREMENT_ID)
         return;
     setTimeout(() => {
-        window.gtag('config', TRACKING_ID, {
+        window.gtag('config', MEASUREMENT_ID, {
             page_path: url,
             page_title: document.title,
         });

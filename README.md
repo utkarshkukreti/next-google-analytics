@@ -4,7 +4,7 @@
 
 ## Usage
 
-Set environment variable `NEXT_PUBLIC_GA_TRACKING_ID` to your Google Analytics tracking id.
+Set environment variable `NEXT_PUBLIC_GA_MEASUREMENT_ID` to your Google Analytics tracking id.
 
 ```
 yarn add next-google-analytics
